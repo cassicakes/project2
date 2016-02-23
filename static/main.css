@@ -1,3 +1,17 @@
 body {
     background-color: #CD8C8C;
 }
+
+#allButton {
+	border-top: 2px solid #a3ceda;
+	border-left: 2px solid #a3ceda;
+	border-right: 2px solid #4f6267;
+	border-bottom: 2px solid #4f6267;
+	border-radius: 25px;
+	padding: 10px 20px;
+	font-size: 14px;
+	background-color: #9CC29C;
+	font-weight: bold;
+	color: #2d525d;
+
+}

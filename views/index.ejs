@@ -1,11 +1,15 @@
 <h1>BoredZzz</h1>
+<p>Stop watching Netflix and go so do something. We're here to help.</p>
 
-<form action="" method="" role="">
+<form action="/login" method="POST" role="">
   <legend>Log In</legend>
 
   <div class="form-group">
-    <label for="">Search</label>
-    <input type="text" class="form-control" id="" placeholder="email" name="">
+    <label for="">Email</label>
+    <input type="text" class="form-control" id="" placeholder="email" name="email">
+    <label for="">Password</label>
+    <input type="password" class="form-control" id="" placeholder="Password" name="password">
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary" id="allButton">Log In</button>
+  <a href="<%= '/register/' %>" class="btn btn-primary" id="allButton"> Create a Profile</a>
 </form>
