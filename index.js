@@ -35,13 +35,26 @@ app.get("/profile", function (req, res) {
 });
 
 app.get("/search", function (req, res) {
-	res.render('searchResults');
+	var zip = req.query.zip
+	var topic = req.query.topic
+	request('https://api.meetup.com/2/open_events?&sign=true&photo-host=public&sign=true&zip=' + zip + "&topic="+ topic + "&key=" + process.env.MEETUP_KEY, function(err, response, body) {
+    console.log(response)
+    var data = JSON.parse(body);
+    // res.json(data);
+    // if (!err && response.statusCode === 200 && data.Search) {
+    //   res.render('movies', {movies: data.Search,
+    //                         q: query});
+    // } else {
+    //   res.render('error');
+    // }
+    res.render('searchResults', {data: data});
+  });
 });
+
 
 app.post('/login', function(req, res) {
 	passport.authenticate('local', function(err, user, info) {
 		console.log('authenticated?');
-		console.log(err);
 		console.log(user);
 	  if (user) {
 	    req.login(user, function(err) {
