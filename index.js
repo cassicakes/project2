@@ -31,7 +31,9 @@ app.get("/", function (req, res) {
 });
 
 app.get("/profile", function (req, res) {
-	res.render('profile');
+  db.user.findById(req.user.id, {include: db.event}).then(function(user) {
+    res.render('profile', {user: user}) 
+  });
 });
 
 app.get("/search", function (req, res) {
@@ -107,6 +109,32 @@ app.post("/addToEvents/:id", function(req, res) {
   var url = "https://api.meetup.com/2/events?offset=0&format=json&limited_events=False&event_id="+ req.params.id +"&photo-host=public&page=20&fields=&order=time&desc=false&status=upcoming" + "&key=" + process.env.MEETUP_KEY
   request(url, function(err, response, body) {
     var data = JSON.parse(body);
+    db.event.findOrCreate( { 
+      where: {
+        name: data.results[0].name,
+        event_id: data.results[0].id
+      }
+    }).spread(function(newEvent, wasCreated) {
+      db.user.findById(req.user.id).then(function(user) {
+        user.addEvent(newEvent).then(function() {
+          res.redirect("/profile");
+        })  
+      })
+    })
+  })
+});
+
+app.post('/delete/:id', function(req, res) {
+  db.user.findById(req.user.id).then(function(user) {
+    db.event.findOne({ 
+      where: {
+        event_id: req.params.id
+      }
+    }).then(function(eventToDelete) {
+      user.removeEvent(eventToDelete).then(function(){
+        res.redirect('/profile');
+      })
+    })
   })
 });
 

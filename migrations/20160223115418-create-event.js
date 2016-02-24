@@ -12,7 +12,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       event_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       event_url: {
         type: Sequelize.STRING

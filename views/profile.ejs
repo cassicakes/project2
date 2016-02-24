@@ -5,11 +5,15 @@
 <div class="current user"></div>
 
 <div class="savedEvents">
-	<ul>One</ul> <!-- add delete button for each event  -->
-	<ul>Two</ul>
-	<ul>Three</ul>
-	<ul>Four</ul>
-	<ul>Five</ul>
+	<ul><%= user.email%></ul> <!-- add delete button for each event  -->
+	<% user.events.forEach(function(event) { %>
+		<div>
+			<%= event.name %>
+			<form action="/delete/<%=event.event_id%>" method="POST">
+				<button>Delete</button>
+			</form>
+		</div>
+	<% }); %>
 </div>
 
 <form action="/search" method="GET">

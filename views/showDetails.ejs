@@ -1,12 +1,22 @@
 <h2><%= data.name %></h2>
-
-<%= new Date(data.time) %>
-
-<%= data.venue.address_1 %>
-
-<%- data.description %>
-
-<a href="<%=data.event_url%>"><%= data.event_url %></a>
+<div class="well">
+	<div class="well"> 
+		<label>Date & Time:</label>
+		<div><%= new Date(data.time) %></div>
+	</div>
+	<div class="well">
+		<label>Venue Address:</label>
+		<div><%= data.venue.address_1 %></div>
+	</div>
+	<div class"well">
+		<label>Description:</label>
+		<div><%= data.description %></div>
+	</div>
+	<div class="well">
+	<label>For more information click:</label>
+	<div><a href="<%=data.event_url%>"><%= data.event_url %></a></div>
+	</div>
+</div>
 
 <form action="/addToEvents/<%= data.id %>" method="POST">
 <button type="submit" class="allButton">Add to My Events</button>
