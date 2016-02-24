@@ -38,7 +38,6 @@ app.get("/search", function (req, res) {
 	var zip = req.query.zip
 	var topic = req.query.topic
 	request('https://api.meetup.com/2/open_events?&sign=true&photo-host=public&sign=true&zip=' + zip + "&topic="+ topic + "&key=" + process.env.MEETUP_KEY, function(err, response, body) {
-    console.log(response)
     var data = JSON.parse(body);
     // res.json(data);
     // if (!err && response.statusCode === 200 && data.Search) {
@@ -94,6 +93,21 @@ app.post("/register", function (req, res) {
     // req.flash('danger', 'Error:', err.message);
     res.redirect('/register');
   });
+});
+
+app.get("/showDetails/:id", function(req, res) {
+  var url = "https://api.meetup.com/2/events?offset=0&format=json&limited_events=False&event_id="+ req.params.id +"&photo-host=public&page=20&fields=&order=time&desc=false&status=upcoming" + "&key=" + process.env.MEETUP_KEY
+  request(url, function(err, response, body) {
+    var data = JSON.parse(body);
+    res.render('showDetails', {data: data.results[0]});
+  })
+});
+
+app.post("/addToEvents/:id", function(req, res) {
+  var url = "https://api.meetup.com/2/events?offset=0&format=json&limited_events=False&event_id="+ req.params.id +"&photo-host=public&page=20&fields=&order=time&desc=false&status=upcoming" + "&key=" + process.env.MEETUP_KEY
+  request(url, function(err, response, body) {
+    var data = JSON.parse(body);
+  })
 });
 
 app.listen(3000);

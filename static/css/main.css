@@ -1,3 +1,43 @@
+#nav {
+	background-color: #F2C3C3;
+   	font-family: 'Fjalla One', sans-serif;
+   	color: #3a6767;
+   	border: 0px;
+}
+
+#logo {
+	font-family: 'Passion One', cursive;
+}
+
+h1 {
+	font-size: 53px;
+}
+
 body {
-    background-color: #CD8C8C;
+	text-align: center;
+    background-color: #F2C3C3;
+   	font-family: 'Fjalla One', sans-serif;
+   	color: #3a6767;
+}
+.well {
+	background-color: #F2D8C3;
+}
+
+.form-control {
+	background-color: #FFF2E7;
+	color: #CD9DC9;
+}
+
+.allButton {
+	border-top: 2px solid #a3ceda;
+	border-left: 2px solid #a3ceda;
+	border-right: 2px solid #4f6267;
+	border-bottom: 2px solid #4f6267;
+	border-radius: 25px;
+	padding: 10px 20px;
+	font-size: 14px;
+	background-color: #9CC29C;
+	font-weight: bold;
+	color: #2d525d;
+
 }

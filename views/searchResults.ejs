@@ -1,10 +1,10 @@
-<h1>Search Results</h1>
+<h2>Search Results</h2>
 
 <!-- lists all results and has add to saved events button (saves to profile) but does not redirect to profile, will have go to profile button -->
 
 <% data.results.forEach(function(event) { %>
 	<div class="well">
-	<%= event.name %>
+	<a href="/showDetails/<%= event.id %>"><%= event.name %></a>
 	</div>
 
 	<% }); %>
