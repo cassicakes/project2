@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="shortcut icon" href="/images/snoricon.png"/>
 	<!-- Latest compiled and minified CSS & JS -->
 	<!-- <link rel="stylesheet" type="text/css" href="/static/main.css"> -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -29,11 +30,19 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="/">Home</a></li>
 					<li><a href="/profile">Profile</a></li>
-					<li><a href="#">Link</a></li>
+					<li><a href="/logout">Log Out</a></li>
 				</ul>
 			</div><!-- /.navbar-collapse -->
 		</div>
 	</nav>
+	<% if (typeof alerts !== 'undefined') { %>
+      <% for (key in alerts) { %>
+        <% alerts[key].forEach(function(thisMsg) { %>
+          <div class="alert alert-<%= key %>"><%= thisMsg %></div>
+        <% }); %>
+      <% } %>
+    <% } %>
+	   
 	<%- body %>
 	<!-- if javascript is needed<script type="text/javascript"></script>
 	 -->

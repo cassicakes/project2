@@ -6,12 +6,14 @@ var app = express();
 var db = require('./models');
 var bodyParser = require('body-parser');
 var passport = require('passport');
+var flash = require('connect-flash');
 var strategies = require('./config/strategies');
 app.use(express.static(__dirname + '/static'));
 
 app.set('view engine', 'ejs');
 app.use(ejsLayouts);
 app.use(bodyParser.urlencoded({extended:false}));
+app.use(flash());
 
 app.use(session({
   secret: 'foobarbazzyyoo',
@@ -27,28 +29,36 @@ passport.use(strategies.localStrategy);
 
 
 app.get("/", function (req, res) {
-	res.render('index');
+	res.render('index', {alerts: req.flash()});
 });
 
 app.get("/profile", function (req, res) {
-  db.user.findById(req.user.id, {include: db.event}).then(function(user) {
-    res.render('profile', {user: user}) 
-  });
+  if(req.user) {
+    db.user.findById(req.user.id, {include: db.event}).then(function(user) {
+      res.render('profile', {user: user, alerts: req.flash()}); 
+    });
+  } else {
+    req.flash('danger', 'You must be logged in');
+    res.redirect('/');
+  }
 });
 
 app.get("/search", function (req, res) {
 	var zip = req.query.zip
 	var topic = req.query.topic
 	request('https://api.meetup.com/2/open_events?&sign=true&photo-host=public&sign=true&zip=' + zip + "&topic="+ topic + "&key=" + process.env.MEETUP_KEY, function(err, response, body) {
-    var data = JSON.parse(body);
-    // res.json(data);
-    // if (!err && response.statusCode === 200 && data.Search) {
-    //   res.render('movies', {movies: data.Search,
-    //                         q: query});
-    // } else {
-    //   res.render('error');
-    // }
-    res.render('searchResults', {data: data});
+    if(!err && response.statusCode === 200) {
+      var data = JSON.parse(body);
+      if(data.results.length > 0) {
+        res.render('searchResults', {data: data});
+      }else {
+        req.flash('danger', "Ain't got none of demz.");
+        res.redirect('/profile');
+      }
+    } else {
+      req.flash('danger', 'Error Getting Results');
+      res.redirect('/profile');
+    }
   });
 });
 
@@ -60,41 +70,51 @@ app.post('/login', function(req, res) {
 	  if (user) {
 	    req.login(user, function(err) {
 	      if (err) throw err;
-	      // req.flash('success', 'Logged in');
+	      req.flash('success', 'Logged in');
 	      res.redirect('/profile');
 	    });
 	  } else {
-	    // req.flash('danger', 'Error');
+	    req.flash('danger', "Incorrect Password");
 	    res.redirect('/');
 	  }
 	})(req, res);
 });
 
+app.get('/logout', function(req,res) {
+  req.session.destroy();
+  res.redirect('/');
+});
+
 
 app.get("/register", function (req, res) {
-	res.render('register');
+	res.render('register', {alerts: req.flash()});
 });
 
 app.post("/register", function (req, res) {
-  db.user.findOrCreate({
-    where: {
-      email: req.body.email
-    },
-    defaults: {
-      password: req.body.password1
-    }
-  }).spread(function(user, created) {
-    if (created) {
-      // req.flash('success', 'User created!');
-      res.redirect('/');
-    } else {
-      // req.flash('danger', 'That email already exists');
+  if(req.body.password1 === req.body.password2 && req.body.password1.length > 4 && req.body.email.length > 5) {
+    db.user.findOrCreate({
+      where: {
+        email: req.body.email
+      },
+      defaults: {
+        password: req.body.password1
+      }
+    }).spread(function(user, created) {
+      if (created) {
+        req.flash('success', 'User created!');
+        res.redirect('/');
+      } else {
+        req.flash('danger', 'That email already exists');
+        res.redirect('/register');
+      }
+    }).catch(function(err) {
+      req.flash('danger', 'Error:', err.message);
       res.redirect('/register');
-    }
-  }).catch(function(err) {
-    // req.flash('danger', 'Error:', err.message);
+    });
+  } else {
+    req.flash('danger', "Enter Valid Email and/or Password");
     res.redirect('/register');
-  });
+  }
 });
 
 app.get("/showDetails/:id", function(req, res) {

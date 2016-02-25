@@ -1,13 +1,13 @@
 #nav {
-	background-color: #F2C3C3;
+	/*background-color: #F2C3C3;*/
    	font-family: 'Fjalla One', sans-serif;
-   	color: #3a6767;
+   	/*color: #3a6767;*/
    	border: 0px;
 }
 
-#logo {
+/*#logo {
 	font-family: 'Passion One', cursive;
-}
+}*/
 
 h1 {
 	font-size: 53px;
@@ -15,17 +15,21 @@ h1 {
 
 body {
 	text-align: center;
-    background-color: #F2C3C3;
+    background: #E4E3EA url("/images/backgroundidea2.jpg") no-repeat center;
+    background-size: cover;
    	font-family: 'Fjalla One', sans-serif;
-   	color: #3a6767;
-}
-.well {
-	background-color: #F2D8C3;
+   	color: #ee5306;
 }
 
-.form-control {
-	background-color: #FFF2E7;
-	color: #CD9DC9;
+input[type="text"] {
+  display: block;
+  margin: 0;
+  width: 100%;
+  font-family: 'Fjalla One', sans-serif;
+  font-size: 18px;
+  appearance: none;
+  box-shadow: none;
+  border-radius: none;
 }
 
 .allButton {
@@ -33,11 +37,11 @@ body {
 	border-left: 2px solid #a3ceda;
 	border-right: 2px solid #4f6267;
 	border-bottom: 2px solid #4f6267;
-	border-radius: 25px;
+	border-radius: 10px;
 	padding: 10px 20px;
 	font-size: 14px;
-	background-color: #9CC29C;
+	background-color: #134462;
 	font-weight: bold;
-	color: #2d525d;
+	color: #ee5306;
 
 }
