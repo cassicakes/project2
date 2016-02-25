@@ -2,7 +2,9 @@
 	/*background-color: #F2C3C3;*/
    	font-family: 'Fjalla One', sans-serif;
    	/*color: #3a6767;*/
-   	border: 0px;
+   	border: 3px;
+    background-color: transparent;
+}
 }
 
 /*#logo {
