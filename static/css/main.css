@@ -2,38 +2,58 @@
 	/*background-color: #F2C3C3;*/
    	font-family: 'Fjalla One', sans-serif;
    	/*color: #3a6767;*/
-   	border: 3px;
+   	border: 0px;
     background-color: transparent;
-}
+    margin-bottom: 0px;
 }
 
-/*#logo {
-	font-family: 'Passion One', cursive;
-}*/
+#logo {
+	
+}
 
 h1 {
 	font-size: 53px;
-}
+} /*for whatever reason keep this here*/
 
 body {
-	text-align: center;
-    background: #E4E3EA url("/images/backgroundidea2.jpg") no-repeat center;
-    background-size: cover;
-   	font-family: 'Fjalla One', sans-serif;
-   	color: #ee5306;
+  text-align: center;
+  background: #E4E3EA url("/images/backgroundidea2.jpg") no-repeat center;
+  background-size: cover;
+  font-family: 'Fjalla One', sans-serif;
+  color: #ee5306;
+  text-shadow: 0 8px 5px rgba(0,0,0,1.5);
+}
+
+p {
+  font-size: 35px;
+  font-weight: bold;
+  margin-top: -40px;
+  /*-webkit-text-stroke-width: .2px;
+  -webkit-text-stroke-color: #756045;*/
 }
 
 input[type="text"] {
   display: block;
-  margin: 0;
+  margin: 10px;
   width: 100%;
   font-family: 'Fjalla One', sans-serif;
-  font-size: 18px;
+  font-size: 10px;
   appearance: none;
   box-shadow: none;
-  border-radius: none;
+  border-radius: 10px;
+  opacity: 0.7;
 }
-
+input[type="password"] {
+  display: block;
+  margin: 10px;
+  width: 100%;
+  font-family: 'Fjalla One', sans-serif;
+  font-size: 10px;
+  appearance: none;
+  box-shadow: none;
+  border-radius: 10px;
+  opacity: 0.7;
+}
 .allButton {
 	border-top: 2px solid #a3ceda;
 	border-left: 2px solid #a3ceda;
@@ -45,5 +65,5 @@ input[type="text"] {
 	background-color: #134462;
 	font-weight: bold;
 	color: #ee5306;
-
+  text-shadow: 0px;
 }
