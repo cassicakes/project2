@@ -7,10 +7,10 @@
 <div class="savedEvents">
 	<ul><%= user.email%></ul> <!-- add delete button for each event  -->
 	<% user.events.forEach(function(event) { %>
-		<div>
+		<div class="resultsFont">
 			<a href="/showDetails/<%= event.event_id %>"><%= event.name %></a>
 			<form action="/delete/<%=event.event_id%>" method="POST">
-				<button>Delete</button>
+				<button class="allButton">Delete</button>
 			</form>
 		</div>
 	<% }); %>

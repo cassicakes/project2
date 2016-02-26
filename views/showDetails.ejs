@@ -1,18 +1,18 @@
 <h2><%= data.name %></h2>
 <div class="well">
-	<div class="well"> 
+	<div class="results"> 
 		<label>Date & Time:</label>
 		<div><%= new Date(data.time) %></div>
 	</div>
-	<div class="well">
+	<div class="results">
 		<label>Venue Address:</label>
 		<div><%= data.venue.address_1 %></div>
 	</div>
-	<div class"well">
+	<!-- <div class="results">
 		<label>Description:</label>
 		<div><%- data.description %></div>
-	</div>
-	<div class="well">
+	</div> -->
+	<div class="">
 	<label>For more information click:</label>
 	<div><a href="<%=data.event_url%>"><%= data.event_url %></a></div>
 	</div>
