@@ -20,6 +20,8 @@
 * Lots and lots of help from Todd Best
 * Comic Creator
 * Fotor
+* Node
+* Sequelize 
 
 
 ##Approach
@@ -56,6 +58,10 @@
 * Improve visability on mobile device view
 
 * Adding more quirkness to showcase my style
+
+* functionality for people that haven't logged in 
+
+* Seperate search page?
 
 
 
